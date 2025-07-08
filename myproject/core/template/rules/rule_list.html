@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Rules</h1>
+<a class="btn btn-outline-dark" href="{% url 'rule_create' %}">Add Rule</a>
+<table class="table">
+    <tr><th>ID</th><th>Name</th><th>Actions</th></tr>
+    {% for rule in rules %}
+    <tr>
+        <td>{{ rule.id }}</td>
+        <td>{{ rule.name }}</td>
+        <td>
+            <a class="btn btn-primary" href="{% url 'rule_update' rule.id %}">Edit</a> |
+            <a class="btn btn-danger" href="{% url 'rule_delete' rule.id %}">Delete</a>
+        </td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="3">No rules found.</td></tr>
+    {% endfor %}
+</table>
+{% endblock %}

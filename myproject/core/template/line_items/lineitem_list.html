@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Line Items</h1>
+<a class="btn btn-outline-dark"href="{% url 'lineitem_create' %}">Add Line Item</a>
+<table class="table">
+    <tr><th>ID</th><th>Product</th><th>Quantity</th><th>Actions</th></tr>
+    {% for item in items %}
+    <tr>
+        <td>{{ item.id }}</td>
+        <td>{{ item.product_name }}</td>
+        <td>{{ item.quantity }}</td>
+        <td>
+            <a class="btn btn-primary" href="{% url 'lineitem_update' item.id %}">Edit</a> |
+            <a class="btn btn-danger" href="{% url 'lineitem_delete' item.id %}">Delete</a>
+        </td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="4">No line items found.</td></tr>
+    {% endfor %}
+</table>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Flagged Orders</h1>
+<a class="btn btn-outline-dark" href="{% url 'flaggedorder_create' %}">Add Flagged Order</a>
+<table class="table">
+    <tr><th>ID</th><th>Order ID</th><th>Flagged At</th><th>Actions</th></tr>
+    {% for flagged in flagged %}
+    <tr>
+        <td>{{ flagged.id }}</td>
+        <td>{{ flagged.order.id }}</td>
+        <td>{{ flagged.flagged_at|date:"Y-m-d H:i" }}</td>
+        <td>
+            <a class="btn btn-primary" href="{% url 'flaggedorder_update' flagged.id %}">Edit</a> |
+            <a class="btn btn-danger" href="{% url 'flaggedorder_delete' flagged.id %}">Delete</a>
+        </td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="4">No flagged orders found.</td></tr>
+    {% endfor %}
+</table>
+{% endblock %}

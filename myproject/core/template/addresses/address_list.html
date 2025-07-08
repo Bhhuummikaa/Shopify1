@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Addresses</h1>
+<a class="btn btn-outline-dark" href="{% url 'address_create' %}">Add Address</a>
+<table class="table">
+    <tr><th>ID</th><th>Address Line</th><th>City</th><th>Actions</th></tr>
+    {% for address in addresses %}
+    <tr>
+        <td>{{ address.id }}</td>
+        <td>{{ address.address_line1 }}</td>
+        <td>{{ address.city }}</td>
+        <td>
+            <a class="btn btn-primary" href="{% url 'address_update' address.id %}">Edit</a> |
+            <a class="btn btn-danger" href="{% url 'address_delete' address.id %}">Delete</a>
+        </td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="4">No addresses found.</td></tr>
+    {% endfor %}
+</table>
+{% endblock %}

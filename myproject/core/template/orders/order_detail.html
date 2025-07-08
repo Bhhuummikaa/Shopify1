@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1>Order #{{ order.order_number }}</h1>
+    <div class="card">
+        <div class="card-body">
+            <p><strong>Date:</strong> {{ order.created_at|date:"F j, Y" }}</p>
+            <p><strong>Customer:</strong> {{ order.customer.first_name }} {{ order.customer.last_name }}</p>
+            <p><strong>Total:</strong> ${{ order.total_price|floatformat:2 }}</p>
+            <p><strong>Status:</strong> {{ order.get_status_display }}</p>
+            <a href="{% url 'order_list' %}" class="btn btn-secondary">Back to Orders</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

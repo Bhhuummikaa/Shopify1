@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+    <div class="card shadow-sm">
+        <div class="card-body text-center">
+            <h2 class="card-title mb-4">Delete Store</h2>
+            <p class="mb-4">Are you sure you want to delete <strong>"{{ store.name }}"</strong>?</p>
+            <form method="post" class="d-inline">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger px-4">Confirm Delete</button>
+            </form>
+            <a href="{% url 'store_list' %}" class="btn btn-outline-secondary px-4 ms-2">Cancel</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Stores</h1>
+<a class="btn btn-outline-dark" href="{% url 'store_create' %}">Add Store</a>
+<table class="table">
+    <tr><th>ID</th><th>Name</th><th>Actions</th></tr>
+    {% for store in stores %}
+    <tr>
+        <td>{{ store.id }}</td>
+        <td>{{ store.name }}</td>
+        <td>
+            <a class="btn btn-primary" href="{% url 'store_update' store.id %}">Edit</a> |
+            <a class="btn btn-danger" href="{% url 'store_delete' store.id %}">Delete</a>
+        </td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="3">No stores found.</td></tr>
+    {% endfor %}
+</table>
+{% endblock %}
